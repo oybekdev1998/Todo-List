@@ -7,9 +7,9 @@ import { Notes } from "../components/Notes"
 
 export const Home = () => {
 
-  const {loading, notes, fetchNotes} = useContext(FirebaseContext)
-  
-  useEffect(()=>{
+  const {loading, notes, fetchNotes, removeNote} = useContext(FirebaseContext)
+
+  useEffect(() => {
     fetchNotes()
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
@@ -17,11 +17,10 @@ export const Home = () => {
     <div className="container pt-4">
       <Form />
       <hr/>
-
       {
         loading
         ? <Loader />
-        : <Notes notes={notes} />
+        : <Notes notes={notes} onRemove={removeNote} />
       }
       
     </div>  
